@@ -3,6 +3,7 @@
 var React = require('react-native');
 var {
   ListView,
+  LocationButton,
   ScrollView,
   Component,
   AppRegistry,
@@ -153,9 +154,9 @@ var ListViewPagingExample = React.createClass({
   },
 
   _onPressHeader: function() {
-    var config = layoutAnimationConfigs[Math.floor(this.state.headerPressCount / 2) % layoutAnimationConfigs.length];
+    /* var config = layoutAnimationConfigs[Math.floor(this.state.headerPressCount / 2) % layoutAnimationConfigs.length];
     LayoutAnimation.configureNext(config);
-    this.setState({headerPressCount: this.state.headerPressCount + 1});
+    this.setState({headerPressCount: this.state.headerPressCount + 1});*/
   },
 
 });
