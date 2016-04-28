@@ -18,7 +18,9 @@ module.exports = StyleSheet.create({
     margin: 50,
   },
 
-
+  type2: {
+    flexDirection: "column"
+  },
   row: {
     flexDirection: "row"
   },
