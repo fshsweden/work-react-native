@@ -29,7 +29,7 @@ module.exports = StyleSheet.create({
     fontFamily: "Verdana",
   },
   bookingdata: {
-    fontSize: 8,
+    fontSize: 18,
     fontFamily: "Verdana",
     paddingHorizontal: 5
   },
