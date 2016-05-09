@@ -17,14 +17,18 @@ module.exports = StyleSheet.create({
     color: 'white',
     margin: 50,
   },
-
-  type2: {
+  container: {
+    marginVertical: 30,
     flexDirection: "column"
   },
   col: {
     flexDirection: "column"
   },
   row: {
+    fontSize: 10,
+    flexDirection: "row"
+  },
+  minirow: {
     flexDirection: "row"
   },
   bookingheader: {
@@ -32,19 +36,71 @@ module.exports = StyleSheet.create({
     fontFamily: "Verdana",
   },
   bookingdata: {
-    fontSize: 18,
+    fontSize: 12,
     fontFamily: "Verdana",
     paddingHorizontal: 5
   },
+  even: {
+    flexDirection: "row",
+    backgroundColor: '#CCCC99'
+  },
+  odd: {
+    flexDirection: "row",
+    backgroundColor: '#FFFFCC'
+  },
+  from: {
+    fontSize: 10,
+    color: 'gray',
+    fontFamily: "Verdana",
+    paddingHorizontal: 5
+  },
+  to: {
+    fontSize: 10,
+    color: 'gray',
+    fontFamily: "Verdana",
+    paddingHorizontal: 5
+  },
+  zamboni: {
+    fontSize: 10,
+    color: 'gray',
+    fontFamily: "Verdana",
+    paddingHorizontal: 5
+  },
+  practice: {
+    fontSize: 10,
+    fontFamily: "Verdana",
+    color: 'gray',
+    paddingHorizontal: 5
+  },
+  match: {
+    fontSize: 10,
+    fontFamily: "Verdana",
+    color: 'gray',
+    paddingHorizontal: 5
+  },
   listview: {
+    top: 20,
     backgroundColor: '#B0C4DE',
   },
-  header: {
+  headerView: {
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#3B5998',
+    backgroundColor: '#CC9933',
     flexDirection: 'row',
+  },
+  headerText: {
+    color: 'white'
+  },
+  footerView: {
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#CC9933',
+    flexDirection: 'row',
+  },
+  footerText: {
+    color: 'white'
   },
   text: {
     color: 'white',
@@ -79,7 +135,7 @@ module.exports = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'flex-start',
     padding: 6,
-    backgroundColor: '#5890ff',
+    backgroundColor: '#99CCCC',
   },
 
 });

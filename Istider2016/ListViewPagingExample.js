@@ -14,8 +14,7 @@ var {
 } = React;
 
 
-var x         = require('./data.js');
-var Data      = x.Data;
+var data      = require('./data.js');
 var dateTools = require('./datetools');
 var styles    = require('./styles');
 
@@ -56,22 +55,38 @@ var ListViewPagingExample = React.createClass({
     var dataBlob = {};
     var sectionIDs = [];
     var rowIDs = [];
+    var timeToDateObj = {}; // index KEY --> Date Object
 
-    console.log("Number of days in data:" + Data.days.length);
+    console.log("Number of days in data:" + data.getDates().length);
 
-    for (var ii = 0; ii < Data.days.length; ii++) {
+    /*
+    data["2016-01-01"]["10:00"]["team"]
+    data.getDays()   -->   ["2016-01-01","2016-01-02","2016-01-03"];
+    data.getDay(day) -->   {"date" : "2016-01-01", "from":"10:00", "to":"11:00", team:"U15", ice:"Kalle P", "type":"practice"}
+    data.getItemsForTeam(team) -->   [{"date" : "2016-01-01", "from":"10:00", "to":"11:00", team:"U15", ice:"Kalle P", "type":"practice"}]
+    */
 
-      var sectionName = dateTools.getDaynameOfDate(Data.days[ii].date) + " " + Data.days[ii].date;
+    var dates = data.getDates();
+    for (var ii = 0; ii < dates.length; ii++) {
+
+      var dateStr = dates[ii];
+      var dateObjArray = data.getDateObjArray(dateStr);
+      var sectionName = dateTools.getDaynameOfDate(dateStr) + " " + dateStr;
+
       sectionIDs.push(sectionName);
       dataBlob[sectionName] = sectionName;
 
       rowIDs[ii] = [];
-      for (var jj = 0; jj < Data.days[ii].bookings.length; jj++) {
+      for (var jj = 0; jj < dateObjArray.length; jj++) {
 
-        //var rowName = 'S' + ii + ', R' + jj;
-        var rowName = Data.days[ii].bookings[jj].from + " " +
-                      Data.days[ii].bookings[jj].to + " " +
-                      Data.days[ii].bookings[jj].team;
+        // Put together an ID for this row!
+        var rowName = dateStr + " " +
+                      dateObjArray[jj].from + " " +
+                      dateObjArray[jj].to + " " +
+                      dateObjArray[jj].team;
+
+        timeToDateObj[rowName] = dateObjArray[jj];
+
         rowIDs[ii].push(rowName);
         dataBlob[rowName] = rowName;
       }
@@ -79,6 +94,7 @@ var ListViewPagingExample = React.createClass({
     return {
       dataSource: dataSource.cloneWithRowsAndSections(dataBlob, sectionIDs, rowIDs),
       headerPressCount: 0,
+      timeToDateObj: timeToDateObj
     };
   },
 
@@ -91,24 +107,46 @@ var ListViewPagingExample = React.createClass({
     var color_index = Math.floor(Math.random() * 6) + 1;
     var colors = ['lightblue','yellow','green','chartreuse','pink','white'];
 
+    // rowObj = data.getItem(sectionID, rowID);
+    var rowObj = this.state.timeToDateObj[rowID];
+
+    var txt;
+
+    if (rowObj.typ == "Practice")
+      txt = <Text style={styles.practice}>Träning</Text>
+    else if (rowObj.typ == "Match")
+      txt = <Text style={styles.match}>MATCH {rowObj.hemma} - {rowObj.borta} </Text>
+    else {
+      txt = <Text style={styles.practice}>Que?</Text>
+    }
+
     return (
       <View style={styles.col}>
-        <View style={styles.row} backgroundColor={colors[color_index]}>
-          <Text style={styles.bookingdata}>{rowData}</Text>
-          <Text style={styles.bookingdata}>Grupp</Text>
-          <Text style={styles.bookingdata}>Lag</Text>
-          <Text style={styles.bookingdata}>Träning/Match</Text>
-          <Text style={styles.bookingdata}>Hemma</Text>
-          <Text style={styles.bookingdata}>Borta</Text>
-          <Text style={styles.bookingdata}>Ismaskin</Text>
+        <View style={this.RowStyle(rowObj.rowstyle)} >
+          <Text style={styles.from}>{rowObj.from} to {rowObj.to}</Text>
+          <Text style={styles.to}>{rowObj.team}</Text>
+          <Text style={styles.zamboni}>(Ismaskin:{rowObj.zamboni})</Text>
         </View>
-        <View style={styles.row} >
-          <Text style={styles.bookingdata}>This is an extra row!</Text>
+        <View style={this.RowStyle(rowObj.rowstyle)}>
+            {txt}
         </View>
       </View>
 
     );
   },
+
+  /* experimental */
+  onSelectRow: function() {
+    alert("Hej");
+  },
+  RowStyle: function(styleStr) {
+    if (styleStr == 'even') {
+      return  styles.even;
+    }
+    else {
+      return styles.odd;
+    }
+ },
 
   /*  ----------------------------------------------------------------------
 
@@ -118,7 +156,7 @@ var ListViewPagingExample = React.createClass({
     return (
       <View style={styles.section}>
         <Text style={styles.text, styles.bookingheader}>
-          Vecka XX : {sectionData}
+          {sectionData}
         </Text>
       </View>
     );
@@ -129,18 +167,12 @@ var ListViewPagingExample = React.createClass({
       ----------------------------------------------------------------------
   */
   renderHeader: function() {
-    var headerLikeText = this.state.headerPressCount % 2 ?
-      <View><Text style={styles.text}>1 Like</Text></View> :
-      null;
     return (
-      <TouchableOpacity onPress={this._onPressHeader} style={styles.header}>
-        {headerLikeText}
-        <View>
-          <Text style={styles.text}>
-            Table Header (click me)
+        <View style={styles.headerView}>
+          <Text style={styles.headerText}>
+            Schema vecka 43
           </Text>
         </View>
-      </TouchableOpacity>
     );
   },
 
@@ -150,9 +182,9 @@ var ListViewPagingExample = React.createClass({
   */
   renderFooter: function() {
     return (
-      <View style={styles.header}>
-        <Text onPress={() => console.log('Footer!')} style={styles.text}>
-          Table Footer
+      <View style={styles.footerView}>
+        <Text style={styles.footerText}>
+          Valbo HC
         </Text>
       </View>
     );

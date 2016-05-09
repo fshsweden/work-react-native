@@ -31,6 +31,10 @@ var ListViewPagingExample = React.createClass({
     description: 'Floating headers & layout animations.'
   },
 
+  /*  ----------------------------------------------------------------------
+
+      ----------------------------------------------------------------------
+  */
   getInitialState: function() {
 
     var getSectionData = (dataBlob, sectionID) => {
@@ -79,34 +83,52 @@ var ListViewPagingExample = React.createClass({
     };
   },
 
+  /*  ----------------------------------------------------------------------
+
+      ----------------------------------------------------------------------
+  */
   renderRow: function(rowData: string, sectionID: string, rowID: string) : ReactElement {
-    // return (<Thumb text={rowData}/>);
 
     var color_index = Math.floor(Math.random() * 6) + 1;
     var colors = ['lightblue','yellow','green','chartreuse','pink','white'];
+
     return (
-      <View style={styles.row} backgroundColor={colors[color_index]}>
-        <Text style={styles.bookingdata}>{rowData}</Text>
-        <Text style={styles.bookingdata}>Grupp</Text>
-        <Text style={styles.bookingdata}>Lag</Text>
-        <Text style={styles.bookingdata}>Träning/Match</Text>
-        <Text style={styles.bookingdata}>Hemma</Text>
-        <Text style={styles.bookingdata}>Borta</Text>
-        <Text style={styles.bookingdata}>Ismaskin</Text>
+      <View style={styles.col}>
+        <View style={styles.row} backgroundColor={colors[color_index]}>
+          <Text style={styles.bookingdata}>{rowData}</Text>
+          <Text style={styles.bookingdata}>Grupp</Text>
+          <Text style={styles.bookingdata}>Lag</Text>
+          <Text style={styles.bookingdata}>Träning/Match</Text>
+          <Text style={styles.bookingdata}>Hemma</Text>
+          <Text style={styles.bookingdata}>Borta</Text>
+          <Text style={styles.bookingdata}>Ismaskin</Text>
+        </View>
+        <View style={styles.row} >
+          <Text style={styles.bookingdata}>This is an extra row!</Text>
+        </View>
       </View>
+
     );
   },
 
+  /*  ----------------------------------------------------------------------
+
+      ----------------------------------------------------------------------
+  */
   renderSectionHeader: function(sectionData: string, sectionID: string) {
     return (
       <View style={styles.section}>
         <Text style={styles.text, styles.bookingheader}>
-          Vecka 44 : {sectionData}
+          Vecka XX : {sectionData}
         </Text>
       </View>
     );
   },
 
+  /*  ----------------------------------------------------------------------
+
+      ----------------------------------------------------------------------
+  */
   renderHeader: function() {
     var headerLikeText = this.state.headerPressCount % 2 ?
       <View><Text style={styles.text}>1 Like</Text></View> :
@@ -123,6 +145,10 @@ var ListViewPagingExample = React.createClass({
     );
   },
 
+  /*  ----------------------------------------------------------------------
+
+      ----------------------------------------------------------------------
+  */
   renderFooter: function() {
     return (
       <View style={styles.header}>
@@ -133,6 +159,10 @@ var ListViewPagingExample = React.createClass({
     );
   },
 
+  /*  ----------------------------------------------------------------------
+
+      ----------------------------------------------------------------------
+  */
   render: function() {
     return (
       <ListView

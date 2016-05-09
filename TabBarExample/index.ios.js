@@ -22,24 +22,13 @@ var ListViewPagingExample = require('./ListViewPagingExample');
 var x = require('./data');
 var Data = x.Data;
 
+/* new : load data from external file! */
 request
    .get('http://192.168.10.22:8080/data')
    .end(function(err, res){
     alert(JSON.stringify(res.text));
      Data = JSON.parse(res.text);
-     alert(Data.days.length);
    });
-
-var dayNames = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-
-function getDaynameOfDate(str) {
-  var year = str.slice(0, 4);
-  var mnth = str.slice(5, 7);
-  var day  = str.slice(8, 10);
-
-  var date = new Date(year, mnth-1, day, 0, 0, 0);
-  return dayNames[date.getDay()];
-}
 
 /*
 fetch("http://192.168.10.22:8080/data")
@@ -63,7 +52,7 @@ fetch("http://192.168.10.22:8080/data")
 
     ---------------------------------------------------------
 */
-class TabBarExample extends Component {
+class Application extends Component {
 
   constructor(props) {
 
@@ -72,7 +61,7 @@ class TabBarExample extends Component {
 
     /* Default State */
     this.state = {
-      selectedTab: 'redTab',
+      selectedTab: 'scheduleTab',
       notifCount: 0,
       presses: 0,
     };
@@ -84,7 +73,7 @@ class TabBarExample extends Component {
     description: 'Tab-based navigation.',
   }
 
-  // displayName: 'TabBarExample'
+  // displayName: 'Application'
 
   _renderContent(color: string, pageText: string, num?: number) {
 
@@ -112,49 +101,53 @@ class TabBarExample extends Component {
         barTintColor="darkslateblue">
 
         <TabBarIOS.Item
-          title="Blue Tab"
+
+          title="Settings"
           icon={{uri: base64Icon, scale: 3}}
-          selected={this.state.selectedTab === 'blueTab'}
+          selected={this.state.selectedTab === 'settingsTab'}
+
           onPress={() => {
             this.setState({
-              selectedTab: 'blueTab',
+              selectedTab: 'settingsTab',
             });
           }}>
           {
-            this._renderContent('#414A8C', 'Blue Tab')
+            this._renderContent('#414A8C', 'Settings')
           }
         </TabBarIOS.Item>
 
         <TabBarIOS.Item
+
           systemIcon="history"
           badge={this.state.notifCount > 0 ? this.state.notifCount : undefined}
-          selected={this.state.selectedTab === 'redTab'}
+          selected={this.state.selectedTab === 'scheduleTab'}
 
           onPress={() => {
             this.setState({
-              selectedTab: 'redTab',
+              selectedTab: 'scheduleTab',
               notifCount: this.state.notifCount + 1,
             });
           }}>
 
           {
-            this._renderContent('#783E33', 'Red Tab', this.state.notifCount)
+            this._renderContent('#783E33', 'Schema', this.state.notifCount)
           }
         </TabBarIOS.Item>
 
         <TabBarIOS.Item
-          icon={require('./flux.png')}
+
+          icon={require('./about.png')}
           title="More"
-          selected={this.state.selectedTab === 'greenTab'}
+          selected={this.state.selectedTab === 'aboutTab'}
 
           onPress={() => {
             this.setState({
-              selectedTab: 'greenTab',
+              selectedTab: 'aboutTab',
               presses: this.state.presses + 1
             });
           }}>
           {
-            this._renderContent('#21551C', 'Green Tab', this.state.presses)
+            this._renderContent('#21551C', 'About', this.state.presses)
           }
         </TabBarIOS.Item>
 
@@ -164,5 +157,5 @@ class TabBarExample extends Component {
   }
 };
 
-module.exports = TabBarExample;
-AppRegistry.registerComponent('TabBarExample', () => TabBarExample);
+module.exports = Application;
+AppRegistry.registerComponent('Application', () => Application);

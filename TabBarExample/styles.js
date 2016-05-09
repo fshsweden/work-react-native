@@ -21,6 +21,9 @@ module.exports = StyleSheet.create({
   type2: {
     flexDirection: "column"
   },
+  col: {
+    flexDirection: "column"
+  },
   row: {
     flexDirection: "row"
   },
