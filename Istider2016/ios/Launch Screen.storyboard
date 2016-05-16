@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -33,15 +32,6 @@
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1Rf-dp-mA1">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="447"/>
-                                <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Ln6-Om-Bzo">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="447"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="Ln6-Om-Bzo" secondAttribute="height" multiplier="200:149" id="6h4-mk-IYz"/>
-                                            <constraint firstAttribute="width" constant="600" id="DWn-M7-4nR"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -60,7 +50,4 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="logo" width="200" height="209"/>
-    </resources>
 </document>

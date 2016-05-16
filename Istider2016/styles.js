@@ -21,6 +21,9 @@ module.exports = StyleSheet.create({
     marginVertical: 30,
     flexDirection: "column"
   },
+  framed: {
+    margin: 2
+  },
   col: {
     flexDirection: "column"
   },
@@ -42,21 +45,23 @@ module.exports = StyleSheet.create({
   },
   even: {
     flexDirection: "row",
-    backgroundColor: '#CCCC99'
+    backgroundColor: '#026438',
+    color: 'white',
+    padding: 2
   },
   odd: {
     flexDirection: "row",
-    backgroundColor: '#FFFFCC'
+    backgroundColor: '#04c870',
+    color: 'white',
+    padding: 2
   },
   from: {
     fontSize: 10,
-    color: 'gray',
     fontFamily: "Verdana",
     paddingHorizontal: 5
   },
   to: {
     fontSize: 10,
-    color: 'gray',
     fontFamily: "Verdana",
     paddingHorizontal: 5
   },
@@ -80,23 +85,25 @@ module.exports = StyleSheet.create({
   },
   listview: {
     top: 20,
-    backgroundColor: '#B0C4DE',
+    backgroundColor: '#FFFFFF',
   },
   headerView: {
+    margin: 2,
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#CC9933',
+    backgroundColor: '#01321C',
     flexDirection: 'row',
   },
   headerText: {
     color: 'white'
   },
   footerView: {
+    margin: 2,
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#CC9933',
+    backgroundColor: '#01321C',
     flexDirection: 'row',
   },
   footerText: {
@@ -131,6 +138,7 @@ module.exports = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   section: {
+    margin: 2,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'flex-start',

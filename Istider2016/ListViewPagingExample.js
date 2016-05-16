@@ -121,7 +121,7 @@ var ListViewPagingExample = React.createClass({
     }
 
     return (
-      <View style={styles.col}>
+      <View style={[styles.col, styles.framed]}>
         <View style={this.RowStyle(rowObj.rowstyle)} >
           <Text style={styles.from}>{rowObj.from} to {rowObj.to}</Text>
           <Text style={styles.to}>{rowObj.team}</Text>
