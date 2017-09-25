@@ -28,7 +28,6 @@ module.exports = StyleSheet.create({
     flexDirection: "column"
   },
   row: {
-    fontSize: 10,
     flexDirection: "row"
   },
   minirow: {
@@ -46,13 +45,11 @@ module.exports = StyleSheet.create({
   even: {
     flexDirection: "row",
     backgroundColor: '#026438',
-    color: 'white',
     padding: 2
   },
   odd: {
     flexDirection: "row",
     backgroundColor: '#04c870',
-    color: 'white',
     padding: 2
   },
   from: {
@@ -85,7 +82,7 @@ module.exports = StyleSheet.create({
   },
   listview: {
     top: 20,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#01321C',
   },
   headerView: {
     margin: 2,
